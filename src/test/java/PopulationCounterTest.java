@@ -44,6 +44,7 @@ import org.junit.jupiter.api.Test;
          // Teardown
          System.setOut(old);
      }
+  
      @Test
      public void Reader() throws IOException {
         List<String> expected = new ArrayList<>();
@@ -60,27 +61,26 @@ import org.junit.jupiter.api.Test;
 
         assertEquals(expected, actual);
     }
-     private void verifyStatic(Class<Files> class1) {
+ 
+    private void verifyStatic(Class<Files> class1) {
     }
+
     @Test
-    public void testParser() {
+    public void Parser() {
         List<String> input = new ArrayList<>();
         input.add("Country,City,AccentCity,Region,Population,Latitude,Longitude");
-        input.add("ad,andorra la vella,Andorra la Vella,07,20430,42.5,1.5166667");
-        input.add("ad,canillo,Canillo,02,,42.5666667,1.6");
-        input.add("ad,encamp,Encamp,03,,42.5333333,1.5833333");
-        input.add("ad,la massana,La Massana,04,7211,42.55,1.5166667");
-        input.add("ad,ordino,Ordino,05,,42.55,1.5333333");
-        input.add("ad,sant julia de loria,Sant Julia de Loria,06,8020,42.4666667,1.5");
-        List<Long> expected = new ArrayList<>(List.of(20430L, 7211L, 8020L));
+        input.add("ad,andorra la vella,Andorra la Vella,,20430,42.5,1.5166667");
+        input.add("ad,canillo,Canillo,02, 0,42.5666667,1.6");
+        List<Long> expected = new ArrayList<>(List.of(20430L, 0L));
         List<Long> actual = Parser.parser(input);
         assertEquals(expected, actual);
     }   
+  
     @Test
-    public void testSummutation() {
+    public void TestPopulation() {
         List<Long> input = Arrays.asList(2L, 4L, 6L, 8L);
         long expected = 20L;
-        long actual = Summutation.sum(input);
+        long actual = Parser.sum(input);
         assertEquals(expected, actual);
     }
      

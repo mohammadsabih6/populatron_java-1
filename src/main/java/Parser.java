@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
+   
+    public static List<Long> parsePopulation(List<String> input) {
+        return parser(input);
+    }
     public static List<Long> parser(List<String> lines) {
         List<Long> populations = new ArrayList<>();
 
@@ -14,7 +18,7 @@ public class Parser {
                         long population = Long.parseLong(populationString);
                         populations.add(population);
                     } catch (NumberFormatException e) {
-                        // ignore invalid population strings
+                        System.out.println("Print Error"+populations);
                     }
                 }
             }
@@ -23,7 +27,11 @@ public class Parser {
         return populations;
     }
 
-    public static List<Long> parsePopulation(List<String> input) {
-        return parser(input);
+    public static long sum(List<Long> List_OF_Cities){
+        int sum = 0;
+        for (Long cities : List_OF_Cities) {
+            sum += cities;
+        }
+        return sum;
     }
 }
